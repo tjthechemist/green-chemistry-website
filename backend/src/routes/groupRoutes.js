@@ -1,16 +1,11 @@
-import express from 'express';
-import {
-    getMembersByGroup,
-    addMemberToGroup,
-    removeMemberFromGroup,
-} from '../controllers/groupController';
-import { authMiddleware } from '../middleware/authMiddleware';
-import { adminOnly } from '../middleware/adminOnly';
+import express from "express";
+import { authMiddleware } from "../middleware/authMiddleware";
 
 const groupRoutes = express.Router();
 
-groupRoutes.get('/:groupId/members', authMiddleware, getMembersByGroup);
-groupRoutes.post('/:groupId/members/:memberId', authMiddleware, adminOnly, addMemberToGroup);
-groupRoutes.delete('/:groupId/members/:memberId', authMiddleware, adminOnly, removeMemberFromGroup);
+groupRoutes.get("/", authMiddleware, getAllGroups);
+groupRoutes.get("/:groupId", authMiddleware, getGroupById);
+groupRoutes.post("/:groupId", authMiddleware, updateGroup);
+groupRoutes.get("");
 
 export default groupRoutes;

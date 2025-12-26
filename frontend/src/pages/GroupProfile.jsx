@@ -2,18 +2,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, FlaskConical } from "lucide-react";
 
-export default function GroupProfile() {
+export default function GroupProfile({ name }) {
 
-    researchInterested = [];
-    publicationLists = [];
-    groupMembers = [];
+    const researchInterested = [];
+    const publicationLists = [];
+    const groupMembers = [];
 
     return (
         <div className="min-h-screen bg-gray-50">
             <section className="bg-green-300 border-b">
                 <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div>
-                        <h1 className="text-4xl font-bold leading-tight mb-4"></h1>
+                        <h1 className="text-4xl font-bold leading-tight mb-4">{name.position} {name.name}</h1>
                         <p className="text-lg text-gray-600 mb-6">
 
                         </p>
@@ -27,7 +27,7 @@ export default function GroupProfile() {
                         <CardContent className="p-6 space-y-3">
                             <h2 className="text-xl text-gray-500">Research Focus</h2>
                             <ul className="list-disc list-inside text-gray-700">
-                                {researchInterested.map((i, topic) => (
+                                {researchInterested.map((topic, i) => (
                                     <li id={i}>{topic}</li>
                                 ))}
                             </ul>
@@ -36,13 +36,7 @@ export default function GroupProfile() {
                 </div>
             </section>
 
-            <section className="">
-                <div className="">
-                    
-                </div>
-            </section>
-
-            <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2: md:grid-cols-4 gap-6">
+            <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[{icon:BookOpen, label:"Publications", value:"128"}, {icon:Users, label:"Members", value:"24"}, {icon:FlaskConical, label:"Projects", value:"18"}].map((s, i) => (
                     <Card key={i} className="rounded-2xl shadow">
                         <CardContent className="p-6 text-center space-y-2">
@@ -58,7 +52,7 @@ export default function GroupProfile() {
                 <div className="max-w-7xl mx-auto px-6 py-14">
                     <h2 className="text-2xl font-bold mb-6">Latest Publication</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {publicationLists.map((i, publication) => (
+                        {publicationLists.map((publication, i) => (
                             <Card key={i} className="rounded-2xl shadow hover:shadow-lg transition">
                                 <CardContent className="p-6">
                                     <h3 className="font-semibold text-lg mb-1">{publication.title}</h3>
@@ -75,12 +69,12 @@ export default function GroupProfile() {
             <section className="max-w-7xl mx-auto px-6 py-14">
                 <h2 className="text-2xl font-bold mb-6">Group Member</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {groupMembers.map((i, member) => (
+                    {groupMembers.map((member, i) => (
                         <Card key={i} className="rounded-2xl shadow text-center">
                             <CardContent className="p-6">
                                 <img src="https://via.placeholder.com/120" className="mx-auto rounded-full mb-3" />
-                                <p className="font-semibold">Dr. Jane Smith</p>
-                                <p className="text-sm text-gray-500">Principal Investigator</p>
+                                <p className="font-semibold">{member.name}</p>
+                                <p className="text-sm text-gray-500">{member.position}</p>
                             </CardContent>
                         </Card>
                     ))}

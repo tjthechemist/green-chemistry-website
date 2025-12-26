@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Plus, Users, Upload, Trash2 } from "lucide-react";
 
 
-export default function MemberDashboard() {
+export default function MemberDashboard({ groupId, onCreated }) {
     const [form, setForm] = useState({
         name: "",
         email: "",

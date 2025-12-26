@@ -3,6 +3,14 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Users, FlaskConical } from "lucide-react";
 
 export default function PublicHomePage() {
+
+    const profList = [
+        {name: "Duangamol Tungasmita (Nuntasri)", position: "Associate Professor Dr.", division: "Organic Chemistry"},
+        {name: "Panuwat Padungros", position: "Assistant Professor Dr.", division: "Organic Chemistry"},
+        {name: "Sumrit Wacharasindhu", position: "Professor Dr.", division: "Organic Chemistry"},
+        {name: "Wipark Anutrasakda", position: "Associate Professor Dr.", division: "Inorganic Chemistry"},
+    ]
+
     return (
         <div className="min-h-screen bg-gray-50">
             <section className="bg-green-300 border-b">
@@ -12,10 +20,6 @@ export default function PublicHomePage() {
                         <p className="text-lg text-gray-600 mb-6">
                             Advancing Science through open research, high-impact publication, and collaborative innovation.
                         </p>
-                        <div className="flex gap-4">
-                            <Button size="lg">View Publication</Button>
-                            <Button size="lg" variant="outline">Join the Group</Button>
-                        </div>
                     </div>
 
                     <Card className="rounded-2xl shadow-xl">
@@ -29,7 +33,7 @@ export default function PublicHomePage() {
                 </div>
             </section>
 
-            <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2: md:grid-cols-4 gap-6">
+            <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[{icon:BookOpen, label:"Publications", value:"128"}, {icon:Users, label:"Members", value:"24"}, {icon:FlaskConical, label:"Projects", value:"18"}].map((s, i) => (
                     <Card key={i} className="rounded-2xl shadow">
                         <CardContent className="p-6 text-center space-y-2">
@@ -63,12 +67,13 @@ export default function PublicHomePage() {
             <section className="max-w-7xl mx-auto px-6 py-14">
                 <h2 className="text-2xl font-bold mb-6">Our Team</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {[1,2,3,4].map((m) => (
-                        <Card key={m} className="rounded-2xl shadow text-center">
+                    {profList.map((member, i) => (
+                        <Card key={i} className="rounded-2xl shadow text-center">
                             <CardContent className="p-6">
                                 <img src="https://via.placeholder.com/120" className="mx-auto rounded-full mb-3" />
-                                <p className="font-semibold">Dr. Jane Smith</p>
-                                <p className="text-sm text-gray-500">Principal Investigator</p>
+                                <p className="font-semibold">{member.position} {member.name}</p>
+                                <p className="text-sm text-gray-500">{member.division}</p>
+                                <Button className="m-4 p-4 bg-green-700">View More</Button>
                             </CardContent>
                         </Card>
                     ))}

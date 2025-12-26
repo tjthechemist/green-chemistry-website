@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import PublicHomePage from "./pages/Home";
 import Login from "./pages/Login";
-import ProfessorPublicationPage from "./pages/Publications";
+import GroupProfile from "./pages/GroupProfile";
 
 const isAuthenticated = () => {
     return Boolean(localStorage.getItem("token"));
@@ -16,10 +16,10 @@ export default function AppRouter() {
         <Routes>
             <Route path="/" element={<PublicHomePage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/publication/panuwat" element={<ProfessorPublicationPage name={"Assoc. Prof. Dr. Panuwat Padungros"} />} />
-            <Route path="/publication/duangkamon" element={<ProfessorPublicationPage name={"Assoc. Prof. Dr. Duangkamon Tungkasamit"} />} />
-            <Route path="/publication/wipark" element={<ProfessorPublicationPage name={"Assoc. Prof. Dr. Wipark Anutaraksakda"} />} />
-            <Route path="/publication/sumrit" element={<ProfessorPublicationPage name={"Prof. Dr. Sumrit Washarasindhu"} />} />
+            <Route path="/duangamol" element={<GroupProfile name={"duangamol"} />} />
+            <Route path="/panuwat" element={<GroupProfile name={"panuwat"} />} />
+            <Route path="/sumrit" element={<GroupProfile name={"sumrit"}/>} />
+            <Route path="/wipark" element={<GroupProfile name={"wipark"}/>} />
 
             {/*
             <Route path="/dashboard/members" element={<PrivateRoute><MemberDashboard /></PrivateRoute>} />
