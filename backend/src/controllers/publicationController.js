@@ -1,4 +1,4 @@
-import Publication from "../models/Publication";
+import Publication from "../models/Publication.js";
 
 export const getPublications = async (req, res, next) => {
     try {

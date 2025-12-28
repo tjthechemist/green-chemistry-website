@@ -1,6 +1,7 @@
 import crypto from 'crypto';
-import Group from '../models/Group';
+import Group from '../models/Group.js';
 import jwt from 'jsonwebtoken';
+import { sendEmail } from '../utils/emailSender.js';
 
 export const requestPasswordReset = async (req, res, next) => {
     try {
@@ -30,7 +31,7 @@ export const resetPassword = async (req, res, next) => {
         if (!group) return res.status(400).json({ error: 'Invalid or expired token' });
         group.password = req.body.password;
         group.resetPasswordToken = undefined;
-        group.resetPasswordExpires = undefined;
+        group.resetPasswordExpire = undefined;
         await group.save();
         res.status(200).json({ message: 'Password updated successfully' });
     } catch (err) {
@@ -39,16 +40,29 @@ export const resetPassword = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-    try {
-        const { email, password } = req.body;
-        const group = await Group.findOne({ email }).select('+password');
-        if (!group || !(await group.comparePassword(password))) {
-            return res.status(401).json({ error: 'Invalid email or password' });
-        }
+  try {
+    const { email, password } = req.body;
 
-        const token = jwt.sign({ id: group._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({ token });
-    } catch (err) {
-        next(err);
-    }
+    const group = await Group.findOne({ email }).select("+password");
+    if (!group) return res.status(400).json({ error: "Invalid credentials" });
+
+    const isMatch = await group.comparePassword(password);
+    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
+
+    const token = jwt.sign(
+        { id: group._id },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+    );
+
+    const { password: _, ...groupData } = group.toObject();
+
+    res.status(200).json({
+        message: "Login successful",
+        token,
+        group: groupData,
+    });
+  } catch (err) {
+    next(err);
+  }
 };

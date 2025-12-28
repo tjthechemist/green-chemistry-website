@@ -4,13 +4,13 @@ import {
     getPublicationById,
     createPublication,
     updatePublication,
-} from "../controllers/publicationController";
+} from "../controllers/publicationController.js";
 
 const publicationRoutes = express.Router();
 
 publicationRoutes.get('/', getPublications);
 publicationRoutes.get('/:id', getPublicationById);
 publicationRoutes.post('/', createPublication);
-publicationRoutes.put('/:id', updatePublication);
+publicationRoutes.patch('/:id', updatePublication);
 
 export default publicationRoutes;

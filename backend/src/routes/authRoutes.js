@@ -3,7 +3,7 @@ import {
     login,
     requestPasswordReset,
     resetPassword,
-} from "../controllers/authController";
+} from "../controllers/authController.js";
 
 const authRoutes = express.Router();
 

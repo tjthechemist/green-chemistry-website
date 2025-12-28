@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const publicationSchema = new mongoose.Schema({
+const PublicationSchema = new mongoose.Schema({
     title: { type: String, required: true },
     authors: [{ type: String }],
     journal: { type: String },
     year: { type: Number },
     abstract: { type: String },
-});
+}, { timestamps: true });
 
-export default mongoose.model("Publication", publicationSchema);
+export default mongoose.model("Publication", PublicationSchema);

@@ -25,11 +25,11 @@ const GroupSchema = new mongoose.Schema({
     resetPasswordExpire: Date,
 });
 
-groupSchema.methods.comparePassword = async function (candidatePassword) {
+GroupSchema.methods.comparePassword = async function (candidatePassword) {
     return bcrypt.compare(candidatePassword, this.password);
 };
 
-groupSchema.methods.generatePasswordResetToken = function () {
+GroupSchema.methods.generatePasswordResetToken = function () {
     const resetToken = crypto.randomBytes(64).toString("hex");
     this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
     this.resetPasswordExpires = Date.now() + 15*60*1000;
