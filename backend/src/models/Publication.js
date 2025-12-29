@@ -6,6 +6,7 @@ const PublicationSchema = new mongoose.Schema({
     journal: { type: String },
     year: { type: Number },
     abstract: { type: String },
+    group: { type: mongoose.Schema.Types.ObjectId, ref: "Group", required: true },
 }, { timestamps: true });
 
 export default mongoose.model("Publication", PublicationSchema);
