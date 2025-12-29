@@ -12,14 +12,21 @@ function PrivateRoute({ children }) {
 };
 
 export default function AppRouter() {
+
+    const profList = [
+        {name: "Duangamol Tungasmita (Nuntasri)", position: "Associate Professor Dr.", division: "Organic Chemistry"},
+        {name: "Panuwat Padungros", position: "Assistant Professor Dr.", division: "Organic Chemistry"},
+        {name: "Sumrit Wacharasindhu", position: "Professor Dr.", division: "Organic Chemistry"},
+        {name: "Wipark Anutrasakda", position: "Associate Professor Dr.", division: "Inorganic Chemistry"},
+    ]
+
     return (
         <Routes>
-            <Route path="/" element={<PublicHomePage />} />
+            <Route path="/" element={<PublicHomePage profList={profList} />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/duangamol" element={<GroupProfile name={"duangamol"} />} />
-            <Route path="/panuwat" element={<GroupProfile name={"panuwat"} />} />
-            <Route path="/sumrit" element={<GroupProfile name={"sumrit"}/>} />
-            <Route path="/wipark" element={<GroupProfile name={"wipark"}/>} />
+            {profList.map((item) => (
+                <Route path={item.name.split(" ")[0].toLowerCase()} element={<GroupProfile info={item} />} />
+            ))}
 
             {/*
             <Route path="/dashboard/members" element={<PrivateRoute><MemberDashboard /></PrivateRoute>} />

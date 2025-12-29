@@ -1,8 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, FlaskConical } from "lucide-react";
+import { Link } from "react-router-dom";
 
-export default function GroupProfile({ name }) {
+export default function GroupProfile({ info }) {
 
     const researchInterested = [];
     const publicationLists = [];
@@ -13,26 +14,16 @@ export default function GroupProfile({ name }) {
             <section className="bg-green-300 border-b">
                 <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div>
-                        <h1 className="text-4xl font-bold leading-tight mb-4">{name.position} {name.name}</h1>
+                        <h1 className="text-4xl font-bold leading-tight mb-4">{info.position} {info.name}</h1>
                         <p className="text-lg text-gray-600 mb-6">
 
                         </p>
                         <div className="flex gap-4">
-                            <Button size="lg">View Publication</Button>
                             <Button size="lg" variant="outline">Join the Group</Button>
+                            <Button size="lg"><Link to="/" >Back to Home</Link></Button>
                         </div>
                     </div>
-
-                    <Card className="rounded-2xl shadow-xl">
-                        <CardContent className="p-6 space-y-3">
-                            <h2 className="text-xl text-gray-500">Research Focus</h2>
-                            <ul className="list-disc list-inside text-gray-700">
-                                {researchInterested.map((topic, i) => (
-                                    <li id={i}>{topic}</li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
+                    <img src="" className="mx-auto rounded-full mb-3"/>
                 </div>
             </section>
 
@@ -46,6 +37,40 @@ export default function GroupProfile({ name }) {
                         </CardContent>
                     </Card>
                 ))}
+            </section>
+
+            <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 gap-6">
+                <h2 className="text-2xl font-bold mb-6">Profile</h2>
+                    <Card className="rounded-2xl shadow-xl">
+                        <CardContent className="p-6 space-y-3">
+                            <h3 className="text-xl font-semibold">Education</h3>
+                            <ul className="list-disc list-inside text-gray-700">
+                                {researchInterested.map((topic, i) => (
+                                    <li id={i}>{topic}</li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                    <Card className="rounded-2xl shadow-xl">
+                        <CardContent className="p-6 space-y-3">
+                            <h3 className="text-xl font-semibold">Work Experience</h3>
+                            <ul className="list-disc list-inside text-gray-700">
+                                {researchInterested.map((topic, i) => (
+                                    <li id={i}>{topic}</li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                    <Card className="rounded-2xl shadow-xl">
+                        <CardContent className="p-6 space-y-3">
+                            <h3 className="text-xl font-semibold">Research Topic</h3>
+                            <ul className="list-disc list-inside text-gray-700">
+                                {researchInterested.map((topic, i) => (
+                                    <li id={i}>{topic}</li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
             </section>
 
             <section className="bg-white border-t">

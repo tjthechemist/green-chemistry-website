@@ -1,15 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, FlaskConical } from "lucide-react";
+import { Link } from "react-router-dom";
 
-export default function PublicHomePage() {
-
-    const profList = [
-        {name: "Duangamol Tungasmita (Nuntasri)", position: "Associate Professor Dr.", division: "Organic Chemistry"},
-        {name: "Panuwat Padungros", position: "Assistant Professor Dr.", division: "Organic Chemistry"},
-        {name: "Sumrit Wacharasindhu", position: "Professor Dr.", division: "Organic Chemistry"},
-        {name: "Wipark Anutrasakda", position: "Associate Professor Dr.", division: "Inorganic Chemistry"},
-    ]
+export default function PublicHomePage({ profList }) {
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -73,7 +67,7 @@ export default function PublicHomePage() {
                                 <img src="https://via.placeholder.com/120" className="mx-auto rounded-full mb-3" />
                                 <p className="font-semibold">{member.position} {member.name}</p>
                                 <p className="text-sm text-gray-500">{member.division}</p>
-                                <Button className="m-4 p-4 bg-green-700">View More</Button>
+                                <Button className="m-4 p-4 bg-green-700"><Link to={member.name.split(" ")[0].toLowerCase()}>View More</Link></Button>
                             </CardContent>
                         </Card>
                     ))}
